@@ -31,7 +31,7 @@ class Event extends Model
                 'event_id' => $event->id,
                 'event_type_id' => $event_first_type->id,
                 'date' => $event->start_at,
-                'editable' => false,
+                'editable' => $event_first_type->editable,
                 'created_at' => now(),
             ]);
             $event_last_type = EventType::where('name', '最終日')->firstOrFail();
@@ -39,7 +39,7 @@ class Event extends Model
                 'event_id' => $event->id,
                 'event_type_id' => $event_last_type->id,
                 'date' => $event->end_at,
-                'editable' => false,
+                'editable' => $event_first_type->editable,
                 'created_at' => now(),
             ]);
         });

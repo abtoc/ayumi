@@ -17,10 +17,10 @@ class EventDate extends Model
     // Relation
     public function event(): BelongsTo
     {
-        return $this->berlongsTo(Event::class);
+        return $this->belongsTo(Event::class);
     }
     public function event_type(): BelongsTo
     {
-        return $this->berlongsTo(EventType::class);
+        return $this->belongsTo(EventType::class);
     }
 }
