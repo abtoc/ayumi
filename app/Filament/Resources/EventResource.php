@@ -43,6 +43,10 @@ class EventResource extends Resource
                     ->required()
                     ->date()
                     ->after('start_at'),
+                Forms\Components\Select::make('livrtd')
+                    ->label('参加ライバー')
+                    ->relationship(name: 'livers', titleAttribute: 'name')
+                    ->multiple(),
             ]);
     }
 

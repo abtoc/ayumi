@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
@@ -19,6 +20,10 @@ class Event extends Model
     public function event_dates(): HasMany
     {
         return $this->hasMany(EventDate::class);
+    }
+    public function livers(): BelongsToMany
+    {
+        return $this->belongsToMany(Liver::class);
     }
 
     // Event
