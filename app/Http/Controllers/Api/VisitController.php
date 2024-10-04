@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\BaseController;
-use App\UseCases\Api\Home\HomeAction;
+use App\UseCases\Api\Visit\VisitAction;
 use Illuminate\Http\Request;
 
-class HomeController extends BaseController
+class VisitController extends BaseController
 {
-    public function home(Request $request, HomeAction $action)
+    public function visit(Request $request, VisitAction $action)
     {
         $input = $request->validate([
             'date' => ['nullable','date']

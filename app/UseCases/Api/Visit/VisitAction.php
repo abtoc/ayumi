@@ -1,11 +1,11 @@
 <?php
 
-namespace App\UseCases\Api\Home;
+namespace App\UseCases\Api\Visit;
 
 use App\Models\EventDate;
 use Carbon\Carbon;
 
-class HomeAction
+class VisitAction
 {
 
     public function __invoke(array $input)

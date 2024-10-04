@@ -1,4 +1,5 @@
 <script setup>
+import { RouterView, RouterLink } from 'vue-router'
 import { ref } from 'vue';
 
 const drawer = ref(false)
@@ -12,7 +13,7 @@ const drawer = ref(false)
         </v-system-bar>
 
         <v-app-bar color="primary">
-            <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-app-bar-title>
                 Application Bar
             </v-app-bar-title>
@@ -23,9 +24,7 @@ const drawer = ref(false)
         </v-navigation-drawer>
 
         <v-main>
-            <v-container>
-                Main Contents
-            </v-container>
+            <RouterView />
         </v-main>
     </v-app>
 </template>
