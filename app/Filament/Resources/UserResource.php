@@ -34,6 +34,8 @@ class UserResource extends Resource
                     ->required()
                     ->email()
                     ->maxLength(255),
+                Forms\Components\Checkbox::make('locked')
+                    ->label('ロック'),
             ]);
     }
 
@@ -49,17 +51,21 @@ class UserResource extends Resource
                     ->label('E-Mail')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\ToggleColumn::make('locked')
+                    ->label('ロック'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('作成日')
-                    ->dateTime('Y/m/d H:i:s')
+                    ->dateTime('Y/m/d H:i')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('更新日')
-                    ->dateTime('Y/m/d H:i:s')
+                    ->dateTime('Y/m/d H:i')
                     ->sortable(),
              ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('locked')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->where('locked', true)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

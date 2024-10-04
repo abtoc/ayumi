@@ -66,11 +66,11 @@ class ClientResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('作成日')
-                    ->dateTime('Y/m/d H:i:s')
+                    ->dateTime('Y/m/d H:i')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('更新日')
-                    ->dateTime('Y/m/d H:i:s')
+                    ->dateTime('Y/m/d H:i')
                     ->sortable(),
             ])
             ->filters([

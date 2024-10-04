@@ -34,6 +34,9 @@ class LiverResource extends Resource
                     ->label('名前')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\ViewField::make('url')
+                    ->label('URL')
+                    ->view('forms.components.link-field')
             ]);
     }
 
@@ -49,13 +52,14 @@ class LiverResource extends Resource
                     ->label('名前')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('url'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('作成日')
-                    ->dateTime('Y/m/d H:i:s')
+                    ->dateTime('Y/m/d H:i')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('更新日')
-                    ->dateTime('Y/m/d H:i:s')
+                    ->dateTime('Y/m/d H:i')
                     ->sortable(),
             ])
             ->filters([

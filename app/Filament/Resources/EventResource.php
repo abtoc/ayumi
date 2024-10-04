@@ -43,6 +43,9 @@ class EventResource extends Resource
                     ->required()
                     ->date()
                     ->after('start_at'),
+                Forms\Components\ViewField::make('url')
+                    ->label('URL')
+                    ->view('forms.components.link-field'),
                 Forms\Components\Select::make('livrtd')
                     ->label('参加ライバー')
                     ->relationship(name: 'livers', titleAttribute: 'name')
@@ -53,6 +56,7 @@ class EventResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('start_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('mixch_id')
                     ->label('ミクチャID')
@@ -62,7 +66,8 @@ class EventResource extends Resource
                     ->label('名前')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('start_at')
+                Tables\Columns\TextColumn::make('url'),
+                    Tables\Columns\TextColumn::make('start_at')
                     ->label('開始日')
                     ->dateTime('Y/m/d(D)')
                     ->sortable(),
@@ -72,15 +77,18 @@ class EventResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('作成日')
-                    ->dateTime('Y/m/d H:i:s')
+                    ->dateTime('Y/m/d H:i')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('更新日')
-                    ->dateTime('Y/m/d H:i:s')
+                    ->dateTime('Y/m/d H:i')
                     ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('in_session')
+                    ->label('開催中')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->where('start_at', '<=', today())->where('end_at', '>=', today())),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
