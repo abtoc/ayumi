@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ClientEvent extends Model
+class ClientEventDate extends Model
 {
     use HasFactory, HasUlids;
 
@@ -18,12 +18,8 @@ class ClientEvent extends Model
     ];
 
     // Relation
-    public function client(): BelongsTo
+    public function client_event(): BelongsTo
     {
-        return $this->belongsTo(Client::class);
-    }
-    public function client_event_dates(): HasMany
-    {
-        return $this->hasMany(ClientEventDate::class);
+        return $this->belongsTo(ClientEvent::class);
     }
 }
