@@ -17,23 +17,30 @@ onMounted(async () => {
     <v-card>
         <v-card-title>開催中のイベント({{ date }})</v-card-title>
         <v-card-text>
-            <v-list
-                density="compact"
+            <div
+                v-if="events.length"
             >
-                <v-list-item v-for="event in events"
-                    :title="event.title"
+                <v-list
+                    density="compact"
                 >
-                        <v-list
-                            density="compact"
-                        >
-                            <v-list-item v-for="liver in event.livers"
-                                prepend-icon="mdi-account"
+                    <v-list-item v-for="event in events"
+                        :title="event.title"
+                    >
+                            <v-list
+                                density="compact"
                             >
-                                <v-btn :href="liver.url" target="_blank" variant="text">{{ liver.name }}</v-btn>
-                            </v-list-item>
-                        </v-list>
-                </v-list-item>
-            </v-list>
+                                <v-list-item v-for="liver in event.livers"
+                                    prepend-icon="mdi-account"
+                                >
+                                    <v-btn :href="liver.url" target="_blank" variant="text">{{ liver.name }}</v-btn>
+                                </v-list-item>
+                            </v-list>
+                    </v-list-item>
+                </v-list>
+            </div>
+            <div v-else>
+                <h3>現在、イベントはありません</h3>
+            </div>
         </v-card-text>
     </v-card>
 </template>

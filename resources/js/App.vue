@@ -20,9 +20,9 @@ const drawer = ref(false)
         </v-app-bar>
 
         <v-navigation-drawer permanennt v-model="drawer">
-            Navigation Drawer
+            <v-list-item to='/' title="ホーム"></v-list-item>
+            <v-list-item to='/test' title="テスト"></v-list-item>
         </v-navigation-drawer>
-
         <v-main>
             <RouterView />
         </v-main>
