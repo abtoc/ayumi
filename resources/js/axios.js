@@ -6,7 +6,7 @@ const instance = axios.create({
         "Content-type": "application/json",
         "Accept": "applicatrion/json",
         "Refer": import.meta.env.VITE_APP_URL,
-        "Origin": import.meta.env.VITE_APP_URL,
+        //"Origin": import.meta.env.VITE_APP_URL,
     }
 })
 

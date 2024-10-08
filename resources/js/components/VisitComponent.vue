@@ -8,7 +8,6 @@ onMounted(async () => {
     const res = await axios.get('/api/visit')
     date.value = res.data.detail.date
     events.value = res.data.detail.events
-    console.log(res)
 })
 
 </script>
