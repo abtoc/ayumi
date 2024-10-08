@@ -33,15 +33,15 @@ class ClientEventsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('url')
                     ->label('URL')
                     ->url(),
-                Forms\Components\DatePicker::make('start_at')
+                Forms\Components\DatePicker::make('start_on')
                     ->label('開始日')
                     ->required()
                     ->date(),
-                Forms\Components\DatePicker::make('end_at')
+                Forms\Components\DatePicker::make('end_on')
                     ->label('終了日')
                     ->required()
                     ->date()
-                    ->after('start_at'),
+                    ->after('start_on'),
           ]);
     }
 
@@ -50,7 +50,7 @@ class ClientEventsRelationManager extends RelationManager
         return $table
             ->heading('イベント')
             ->recordTitleAttribute('liver_name')
-            ->defaultSort('start_at', 'desc')
+            ->defaultSort('start_on', 'desc')
              ->columns([
                 Tables\Columns\TextColumn::make('liver_name')
                     ->label('ライバー名')
@@ -68,11 +68,11 @@ class ClientEventsRelationManager extends RelationManager
                     ->label('URL')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('start_at')
+                Tables\Columns\TextColumn::make('start_on')
                     ->label('開始日')
                     ->dateTime('Y/m/d(D)')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('end_at')
+                Tables\Columns\TextColumn::make('end_on')
                     ->label('終了日')
                     ->dateTime('Y/m/d(D)')
                     ->sortable(),

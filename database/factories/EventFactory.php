@@ -19,8 +19,8 @@ class EventFactory extends Factory
         return [
             'name' => "イベント_".fake()->dateTime()->format('YmdHis'),
             'mixch_id' => fake()->randomNumber(),
-            'start_at' => fake()->date(),
-            'end_at' => fake()->date(),
+            'start_on' => fake()->date(),
+            'end_on' => fake()->date(),
             'description' => fake()->realText(),
         ];
     }

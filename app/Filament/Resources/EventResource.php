@@ -34,15 +34,15 @@ class EventResource extends Resource
                     ->label('イベント名')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DatePicker::make('start_at')
+                Forms\Components\DatePicker::make('start_on')
                     ->label('開始日')
                     ->required()
                     ->date(),
-                Forms\Components\DatePicker::make('end_at')
+                Forms\Components\DatePicker::make('end_on')
                     ->label('終了日')
                     ->required()
                     ->date()
-                    ->after('start_at'),
+                    ->after('start_on'),
                 Forms\Components\ViewField::make('url')
                     ->label('URL')
                     ->view('forms.components.link-field'),
@@ -56,7 +56,7 @@ class EventResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultSort('start_at', 'desc')
+            ->defaultSort('start_on', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('mixch_id')
                     ->label('ミクチャID')
@@ -67,11 +67,11 @@ class EventResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('url'),
-                    Tables\Columns\TextColumn::make('start_at')
+                    Tables\Columns\TextColumn::make('start_on')
                     ->label('開始日')
                     ->dateTime('Y/m/d(D)')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('end_at')
+                Tables\Columns\TextColumn::make('end_on')
                     ->label('終了日')
                     ->dateTime('Y/m/d(D)')
                     ->sortable(),
@@ -88,7 +88,7 @@ class EventResource extends Resource
                 Tables\Filters\Filter::make('in_session')
                     ->label('開催中')
                     ->toggle()
-                    ->query(fn (Builder $query): Builder => $query->where('start_at', '<=', today())->where('end_at', '>=', today())),
+                    ->query(fn (Builder $query): Builder => $query->where('start_on', '<=', today())->where('end_on', '>=', today())),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
