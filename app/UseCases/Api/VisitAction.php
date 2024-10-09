@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\Api\Visit;
+namespace App\UseCases\Api;
 
 use App\Models\EventDate;
 use Carbon\Carbon;
