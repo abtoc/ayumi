@@ -20,7 +20,9 @@ return new class extends Migration
             $table->foreignIdFor(ClientEventDate::class)
                 ->constrained();
             $table->string('path');
+            $table->string('fname');
             $table->timestamps();
+            $table->index(['user_id', 'fname'])->unique();
         });
     }
 
