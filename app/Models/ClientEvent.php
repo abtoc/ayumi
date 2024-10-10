@@ -17,6 +17,15 @@ class ClientEvent extends Model
         'id'
     ];
 
+    // casts
+    protected function casts(): array
+    {
+        return [
+            'start_on' => 'date',
+            'end_on' => 'date',
+        ];
+    }
+
     // Relation
     public function client(): BelongsTo
     {

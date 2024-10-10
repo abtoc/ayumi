@@ -9,6 +9,14 @@ class EventType extends Model
 {
     use HasFactory;
 
+    // casts
+    protected function casts(): array
+    {
+        return [
+            'editable' => 'boolean',
+        ];
+    }
+
     protected $guarded = [
         'id'
     ];

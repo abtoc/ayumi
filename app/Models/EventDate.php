@@ -14,6 +14,15 @@ class EventDate extends Model
         'id'
     ];
 
+    // casts
+    protected function casts(): array
+    {
+        return [
+            'date' => 'date',
+            'editable' => 'boolean',
+        ];
+    }
+
     // Relation
     public function event(): BelongsTo
     {

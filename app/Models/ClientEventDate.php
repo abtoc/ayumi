@@ -17,9 +17,21 @@ class ClientEventDate extends Model
         'id'
     ];
 
+    // casts
+    protected function casts(): array
+    {
+        return [
+            'date' => 'date',
+        ];
+    }
+
     // Relation
     public function client_event(): BelongsTo
     {
         return $this->belongsTo(ClientEvent::class);
+    }
+    public function screenshots(): HasMany
+    {
+        return $this->hasMany(Screenshot::class);
     }
 }
