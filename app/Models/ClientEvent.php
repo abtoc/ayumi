@@ -35,4 +35,18 @@ class ClientEvent extends Model
     {
         return $this->hasMany(ClientEventDate::class);
     }
+
+    // Event
+    protected static function booted(): void
+    {
+        static::created(function ($event)
+        {
+            if($event->start_on->eq(today())){
+                $event->client_event_data()->create(['date' => $event->start_on]);
+            }
+        });
+        static::deleting(function ($event){
+            $event->client_event_dates()->delete();
+        });
+    }
 }

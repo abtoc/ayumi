@@ -42,7 +42,7 @@ class EventResource extends Resource
                     ->label('終了日')
                     ->required()
                     ->date()
-                    ->after('start_on'),
+                    ->afterOrEqual('start_on'),
                 Forms\Components\ViewField::make('url')
                     ->label('URL')
                     ->view('forms.components.link-field'),

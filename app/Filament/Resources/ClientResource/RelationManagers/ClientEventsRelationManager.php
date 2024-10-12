@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ClientResource\RelationManagers;
 
+use App\Rules\AlreadyRegisteredShotcutsRule;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -29,19 +30,22 @@ class ClientEventsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('account_count')
                     ->label('相互アカウント数')
                     ->required()
-                    ->integer(),
+                    ->integer()
+                    ->gt(0),
                 Forms\Components\TextInput::make('url')
                     ->label('URL')
                     ->url(),
                 Forms\Components\DatePicker::make('start_on')
                     ->label('開始日')
                     ->required()
-                    ->date(),
+                    ->date()
+                    ->afterOrEqual(today())
+                    ->rules([new AlreadyRegisteredShotcutsRule($form->model)]),
                 Forms\Components\DatePicker::make('end_on')
                     ->label('終了日')
                     ->required()
                     ->date()
-                    ->after('start_on'),
+                    ->afterOrEqual('start_on'),
           ]);
     }
 

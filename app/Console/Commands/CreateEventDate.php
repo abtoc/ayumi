@@ -32,10 +32,12 @@ class CreateEventDate extends Command
                     ->where('end_on', '>=', today())
                     ->get();
         foreach($events as $event) {
-            \Log::info(
-                $event->liver_name.'さんの'.$event->event_name.'の'.$today->format('Y-m-d').'分の相互依頼用のイベント日付を作成します'
-            );
-            $event->client_event_dates()->create(['date' => $today]);
+            if($event->client_event_dates()->where('date', $today)->doesntExist()){
+                \Log::info(
+                    $event->liver_name.'さんの'.$event->event_name.'の'.$today->format('Y-m-d').'分の相互依頼用のイベント日付を作成します'
+                );
+                $event->client_event_dates()->create(['date' => $today]);
+            }
         }
     }
 }
