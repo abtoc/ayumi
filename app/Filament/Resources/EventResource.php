@@ -89,6 +89,10 @@ class EventResource extends Resource
                     ->label('開催中')
                     ->toggle()
                     ->query(fn (Builder $query): Builder => $query->where('start_on', '<=', today())->where('end_on', '>=', today())),
+                Tables\Filters\Filter::make('in_ended')
+                    ->label('終了したイベントを除く')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->where('end_on', '>=', today())),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -22,6 +22,7 @@ class ClientEventDate extends Model
     {
         return [
             'date' => 'date',
+            'collected' => 'boolean',
         ];
     }
 

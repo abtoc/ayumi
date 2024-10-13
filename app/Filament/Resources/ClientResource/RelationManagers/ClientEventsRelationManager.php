@@ -32,6 +32,8 @@ class ClientEventsRelationManager extends RelationManager
                     ->required()
                     ->integer()
                     ->gt(0),
+                Forms\Components\Checkbox::make('delivered')
+                    ->label('納品済'),
                 Forms\Components\TextInput::make('url')
                     ->label('URL')
                     ->url(),
@@ -65,9 +67,11 @@ class ClientEventsRelationManager extends RelationManager
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('account_count')
-                    ->label('相互アカウント数')
+                    ->label('相互数')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\ToggleColumn::make('delivered')
+                    ->label('納品済'),
                 Tables\Columns\TextColumn::make('url')
                     ->label('URL')
                     ->searchable()
@@ -82,7 +86,10 @@ class ClientEventsRelationManager extends RelationManager
                     ->sortable(),
                 ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('is_delivered')
+                    ->label('納品済を除く')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->where('delivered', false)),
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

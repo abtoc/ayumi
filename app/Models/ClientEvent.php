@@ -21,6 +21,7 @@ class ClientEvent extends Model
     protected function casts(): array
     {
         return [
+            'delivered' => 'boolean',
             'start_on' => 'date',
             'end_on' => 'date',
         ];
