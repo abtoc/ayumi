@@ -18,7 +18,6 @@ async function load({done}) {
 
 <template>
 <v-container>
-    Main Contents
     <div class="scrollable-container bg-surface-light">
         <v-pull-to-refresh
             :pull-down-threshold="pullDownThreshold"

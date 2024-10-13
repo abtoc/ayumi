@@ -8,14 +8,10 @@ const drawer = ref(false)
 
 <template>
     <v-app>
-        <v-system-bar color="secondary">
-            System Bar
-        </v-system-bar>
-
         <v-app-bar color="primary">
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-app-bar-title>
-                Application Bar
+                Ayumi System
             </v-app-bar-title>
         </v-app-bar>
 
@@ -23,6 +19,7 @@ const drawer = ref(false)
             <v-list-item to='/' title="ホーム"></v-list-item>
             <v-list-item to='/test' title="テスト"></v-list-item>
         </v-navigation-drawer>
+
         <v-main>
             <RouterView />
         </v-main>
