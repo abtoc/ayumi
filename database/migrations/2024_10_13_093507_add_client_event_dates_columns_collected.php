@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('client_event_dates', function (Blueprint $table) {
-            $table->boolean('collected')->defalt(false)->after('date');
+            $table->boolean('collected')->default(false)->after('date');
         });
     }
 

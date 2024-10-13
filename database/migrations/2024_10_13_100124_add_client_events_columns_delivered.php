@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('client_events', function (Blueprint $table) {
-            $table->boolean('delivered')->defalt(false)->after('account_count');
+            $table->boolean('delivered')->default(false)->after('account_count');
         });
     }
 

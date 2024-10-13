@@ -53,7 +53,6 @@ class ClientEventResource extends Resource
                     ->label('開始日')
                     ->required()
                     ->date()
-                    ->afterOrEqual(today())
                     ->rules([new AlreadyRegisteredShotcutsRule($form->model)]),
                 Forms\Components\DatePicker::make('end_on')
                     ->label('終了日')
@@ -105,6 +104,10 @@ class ClientEventResource extends Resource
                      ->sortable(),
               ])
             ->filters([
+                Tables\Filters\Filter::make('in_session')
+                    ->label('開催中')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->where('start_on', '<=', today())->where('end_on', '>=', today())),
                 Tables\Filters\Filter::make('is_delivered')
                     ->label('納品済を除く')
                     ->toggle()
