@@ -6,13 +6,14 @@ import { useLoginState } from '../stores/LoginState';
 
 const st = useLoginState()
 
+const visible=ref(false)
 const email = ref('')
 const password = ref('')
 const errs_email = ref([])
 const errs_password = ref([])
 
 const dialog = computed(() => {
-    return !st.loggedin
+    return st.loginDialog
 })
 
 const login = () => {
@@ -65,6 +66,7 @@ const login = () => {
                 placeholder="Emailアドレスを入力してください"
                 prepend-inner-icon="mdi-email-outline"
 				variant="outlined"
+                type="email"
                 v-model="email"
                 :error-messages="errs_email">
             </v-text-field>
@@ -84,8 +86,11 @@ const login = () => {
             </v-text-field>
         </v-card-text>
         <v-card-action>
-            <v-btn block class="mb-8" color="blue" size="large" variant="tonal" @click="login">
+            <v-btn block class="mb-2" color="blue" size="large" variant="tonal" @click="login">
 				ログイン
+			</v-btn>
+            <v-btn block class="mb-8" color="blue" size="large" variant="tonal" to="/regist">
+				新規登録
 			</v-btn>
         </v-card-action>
     </v-card>
