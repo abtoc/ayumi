@@ -9,7 +9,8 @@ const date = ref()
 const events = ref([])
 
 onMounted(async () => {
-    await axios.get('/api/visit')
+    if(st.loggedin){
+        await axios.get('/api/visit')
         .then((res) => {
             date.value = res.data.detail.date
             events.value = res.data.detail.events
@@ -20,6 +21,7 @@ onMounted(async () => {
             }
             console.log('visit error:'+err)
         })
+    }
 })
 
 </script>
@@ -48,6 +50,9 @@ onMounted(async () => {
                             </v-list>
                     </v-list-item>
                 </v-list>
+            </div>
+            <div v-else-if="!st.loggedin">
+                <h3>ログインしてください</h3>
             </div>
             <div v-else>
                 <h3>現在、イベントはありません</h3>

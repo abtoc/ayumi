@@ -39,7 +39,7 @@ class LoginController extends BaseController
     {
         return $this->sendResponse(
             'Logged in.',
-            ['email' => 'Authenticated.'],
+            Auth::user()->toArray(),
         );
     }
 

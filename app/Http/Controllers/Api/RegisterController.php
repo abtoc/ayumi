@@ -20,6 +20,9 @@ class RegisterController extends BaseController
         $email = $credentials['email'];
         $password = $credentials['password'];
 
+        logger()->info($email);
+        logger()->info($password);
+
         $credentials['password'] = Hash::make($credentials['password']);
         $credentials['locked'] = true;
         User::create($credentials);

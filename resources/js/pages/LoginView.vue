@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { storeToRefs } from 'pinia';
 import axios from '../axios';
 import { useLoginState } from '../stores/LoginState';
 

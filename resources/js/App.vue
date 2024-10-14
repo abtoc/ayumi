@@ -35,7 +35,7 @@ const logout = () => {
 
         <v-navigation-drawer permanennt v-model="drawer">
             <v-list-item to='/' title="ホーム"></v-list-item>
-            <v-list-item to='/test' title="テスト"></v-list-item>
+            <v-list-item to='/regist' title="新規登録" v-if="!st.loggedin"></v-list-item>
             <v-list-item @click="logout" title="ログアウト"></v-list-item>
         </v-navigation-drawer>
 
