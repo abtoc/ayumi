@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\BaseController;
 use App\UseCases\Api\VisitAction;
 use Illuminate\Http\Request;
 
