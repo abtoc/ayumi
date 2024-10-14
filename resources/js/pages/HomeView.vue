@@ -2,15 +2,25 @@
 import { ref } from 'vue';
 import VisitComponent from '../components/VisitComponent.vue';
 import { VPullToRefresh } from 'vuetify/labs/VPullToRefresh'
+import { useLoginState } from '../stores/LoginState';
+
+const st = useLoginState()
+
+st.$subscribe((mutation, state) => {
+    if(st.loggedin){
+        renderKey.value = renderKey.value + 1
+        console.log('visit refresh')
+    }
+})
 
 const pullDownThreshold = ref(64)
 const renderKey = ref(0)
 
 async function load({done}) {
-    console.log('loading')
+    console.log('visit loading')
     await new Promise(resolve => setTimeout(() => resolve(), 2000))
     renderKey.value = renderKey.value + 1
-    console.log('load finish')
+    console.log('visit load finish')
     done('ok')
 }
 

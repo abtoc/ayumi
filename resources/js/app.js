@@ -15,6 +15,9 @@ import '@mdi/font/css/materialdesignicons.css'
 // Router
 import router from './router';
 
+// pinia
+import { createPinia } from 'pinia';
+
 const vuetify = createVuetify({
     components,
     directives,
@@ -26,4 +29,22 @@ const vuetify = createVuetify({
 createApp(App)
     .use(router)
     .use(vuetify)
+    .use(createPinia())
     .mount('#app')
+
+/*
+import { useLoginState } from './stores/LoginState';
+
+router.beforeEach((to) => {
+    const st = useLoginState()
+
+    if(['login'].includes(to.name)){
+        return true
+    }
+
+    if(st.loggedin){
+        return true
+    }
+    return { name: 'login' }
+})
+*/

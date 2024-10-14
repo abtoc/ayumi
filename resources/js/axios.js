@@ -7,7 +7,9 @@ const instance = axios.create({
         "Accept": "applicatrion/json",
         "Refer": import.meta.env.VITE_APP_URL,
         "Origin": import.meta.env.VITE_APP_URL,
-    }
+    },
+    withCredentials: true,
+    withXSRFToken: true,
 })
 
 export default instance

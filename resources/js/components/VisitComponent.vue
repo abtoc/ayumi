@@ -1,13 +1,25 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useLoginState } from '../stores/LoginState';
+import axios from '../axios';
+
+const st = useLoginState()
 
 const date = ref()
 const events = ref([])
 
 onMounted(async () => {
-    const res = await axios.get('/api/visit')
-    date.value = res.data.detail.date
-    events.value = res.data.detail.events
+    await axios.get('/api/visit')
+        .then((res) => {
+            date.value = res.data.detail.date
+            events.value = res.data.detail.events
+        }).catch((err) => {
+            console.log(err)
+            if(err.status == 401){
+                st.logout()
+            }
+            console.log('visit error:'+err)
+        })
 })
 
 </script>
