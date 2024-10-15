@@ -2,6 +2,7 @@
 
 namespace App\UseCases\Api\Shortcut;
 
+use App\Models\ClientEvent;
 use App\Models\ClientEventDate;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,6 +12,20 @@ class IndexAction
     public function __invoke()
     {
         $result = [];
+
+        // 未納品のイベントの数を数える
+        $count = ClientEvent::query()
+                    ->where('delivered', true)
+                    ->count();
+
+        // 未納品がなければ、スクショは不要
+        if($count == 0){
+            return [
+                'need' => false,
+                'dates' => [],
+            ];
+        }
+
 
         $dates = ClientEventDate::query()
                     ->where('collected', false)
@@ -32,7 +47,10 @@ class IndexAction
             }
         }
 
-        return $result;
+        return [
+                    'need' => true,
+                    'dates' =>$result,
+        ];
     }
 
 }

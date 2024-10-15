@@ -6,12 +6,15 @@ import axios from '../axios';
 const st = useLoginState()
 
 const dates = ref({})
+const need = ref(false)
 
 onMounted(async () => {
     if(st.loggedin){
         await axios.get('/api/screenshot')
         .then((res) => {
-            dates.value = res.data.detail
+            console.log(res)
+            need.value = res.data.detail.need
+            dates.value = res.data.detail.dates
         }).catch((err) => {
             console.log(err)
             if((err.status == 401) || (err.status == 419)){
@@ -28,7 +31,10 @@ onMounted(async () => {
     <v-card>
         <v-card-title>相互実施中</v-card-title>
         <v-card-text>
-            <div v-if="Object.keys(dates).length">
+            <div v-if="!need">
+                <h3>現在相互はありません。</h3>
+            </div>
+            <div v-else-if="Object.keys(dates).length">
                 <v-list density="compact">
                     <v-list-item v-for="(events, date) in dates"
                         :title="date"
