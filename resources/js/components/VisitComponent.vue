@@ -16,7 +16,7 @@ onMounted(async () => {
             events.value = res.data.detail.events
         }).catch((err) => {
             console.log(err)
-            if(err.status == 401){
+            if((err.status == 401) || (err.status == 419)){
                 st.logout()
             }
             console.log('visit error:'+err)
@@ -38,14 +38,18 @@ onMounted(async () => {
                 >
                     <v-list-item v-for="event in events"
                         :title="event.title"
+                        :href="event.url"
+                        target="_blank"
                     >
                             <v-list
                                 density="compact"
                             >
                                 <v-list-item v-for="liver in event.livers"
                                     prepend-icon="mdi-account"
+                                    :title="liver.name"
+                                    :href="liver.url"
+                                    target="_blank"
                                 >
-                                    <v-btn :href="liver.url" target="_blank" variant="text">{{ liver.name }}</v-btn>
                                 </v-list-item>
                             </v-list>
                     </v-list-item>

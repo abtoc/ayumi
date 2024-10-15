@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\UseCases\Api\Shortcut\IndexAction;
 use Illuminate\Http\Request;
 
-class ShortcutController extends Controller
+class ShortcutController extends BaseController
 {
-    //
+    public function index(Request $request, IndexAction $action)
+    {
+        $result = $action();
+
+        return $this->sendResponse(
+            'Scrennshot',
+            $result,
+        );
+    }
 }

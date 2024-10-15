@@ -16,7 +16,7 @@ class VisitController extends BaseController
         $result = $action($input);
 
         return $this->sendResponse(
-            'Home',
+            'Visit',
             $result,
         );
     }

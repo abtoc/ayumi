@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import VisitComponent from '../components/VisitComponent.vue';
+import ScreenshotComponent from '../components/ScreenshotComponent.vue';
 import { VPullToRefresh } from 'vuetify/labs/VPullToRefresh'
 import { useLoginState } from '../stores/LoginState';
 
@@ -17,10 +18,10 @@ const pullDownThreshold = ref(64)
 const renderKey = ref(0)
 
 async function load({done}) {
-    console.log('visit loading')
+    console.log('loading')
     await new Promise(resolve => setTimeout(() => resolve(), 2000))
     renderKey.value = renderKey.value + 1
-    console.log('visit load finish')
+    console.log('load finish')
     done('ok')
 }
 
@@ -28,14 +29,13 @@ async function load({done}) {
 
 <template>
 <v-container>
-    <div class="scrollable-container bg-surface-light">
-        <v-pull-to-refresh
-            :pull-down-threshold="pullDownThreshold"
-            @load="load"
-        >
-            <VisitComponent :key="renderKey" />
-        </v-pull-to-refresh>
-    </div>
+    <v-pull-to-refresh
+        :pull-down-threshold="pullDownThreshold"
+        @load="load"
+    >
+        <VisitComponent :key="renderKey" />
+        <ScreenshotComponent :key="renderKey" />
+    </v-pull-to-refresh>
 </v-container>
 </template>
 
