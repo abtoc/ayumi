@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends BaseController
@@ -20,12 +21,13 @@ class RegisterController extends BaseController
         $email = $credentials['email'];
         $password = $credentials['password'];
 
-        logger()->info($email);
-        logger()->info($password);
-
         $credentials['password'] = Hash::make($credentials['password']);
         $credentials['locked'] = true;
-        User::create($credentials);
+        $user = User::create($credentials);
+
+        Log::info(
+            $user->name.'('.$user->email.')さんからユーザ登録がありました'
+        );
 
         if(Auth::attempt(['email' =>$email, 'password' => $password], true)){
             $request->session()->regenerate();

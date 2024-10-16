@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useLoginState } from '../stores/LoginState';
 import router from '../router';
+import SubLayout from '../layouts/SubLayout.vue';
 
 const st = useLoginState()
 
@@ -62,7 +63,7 @@ const regist = () => {
 </script>
 
 <template>
-<v-container>
+<SubLayout title="ユーザ登録">
     <v-card>
         <v-card-title>ユーザ登録</v-card-title>
         <v-card-text>
@@ -119,5 +120,5 @@ const regist = () => {
 			</v-btn>
         </v-card-action>
     </v-card>
-</v-container>
+</SubLayout>
 </template>

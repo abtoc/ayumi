@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import VisitComponent from '../components/VisitComponent.vue';
 import ScreenshotComponent from '../components/ScreenshotComponent.vue';
+import MainLayout from '../layouts/MainLayout.vue';
 import { VPullToRefresh } from 'vuetify/labs/VPullToRefresh'
 import { useLoginState } from '../stores/LoginState';
 
@@ -25,10 +26,29 @@ async function load({done}) {
     done('ok')
 }
 
+const logout = () => {
+    axios.get('/sanctum/csrf-cookie')
+        .then((res) => {
+            axios.post('/api/logout'
+            ).then((res) => {
+                console.log(res)
+                st.logout()
+                drawer.value = false
+            }).catch((err) => {
+                console.log('logout error:'+err)
+            })
+        })
+}
+
 </script>
 
 <template>
-<v-container>
+<MainLayout title="Ayumi System">
+    <template v-slot:navigation>
+        <v-list-item to='/' title="ホーム"></v-list-item>
+        <v-list-item to='/regist' title="新規登録" v-if="!st.loggedin"></v-list-item>
+        <v-list-item @click="logout" title="ログアウト"></v-list-item>
+    </template>
     <v-pull-to-refresh
         :pull-down-threshold="pullDownThreshold"
         @load="load"
@@ -36,12 +56,6 @@ async function load({done}) {
         <VisitComponent :key="renderKey" />
         <ScreenshotComponent :key="renderKey" />
     </v-pull-to-refresh>
-</v-container>
+</MainLayout>
 </template>
 
-<style>
-.scrollable-container {
-  max-height: 300px;
-  overflow-y: scroll;
-}
-</style>

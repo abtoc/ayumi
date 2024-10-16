@@ -28,6 +28,8 @@ class IndexAction
 
 
         $dates = ClientEventDate::query()
+                    ->join('client_events', 'client_event_dates.client_event_id', '=', 'client_events.id')
+                    ->where('delivered', false)
                     ->where('collected', false)
                     ->orderBy('date', 'asc')
                     ->get();
