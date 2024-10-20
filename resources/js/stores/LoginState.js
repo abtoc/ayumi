@@ -4,10 +4,14 @@ export const useLoginState = defineStore('loginstate', {
     state: () => ({
         loggedin: true,
         registration: false,
+        user: [],
     }),
     getters: {
         loginDialog: (state) => {
             return !state.loggedin && !state.registration
+        },
+        setUser: (user) => {
+            this.user = user
         }
     },
     actions: {
