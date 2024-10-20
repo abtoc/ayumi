@@ -40,7 +40,7 @@ const login = () => {
                     if('password' in errors){
                         errs_password.value = errors.password.concat()
                     } else {
-                        errs_password = []
+                        errs_password.value = []
                     }
                 } else {
                     console.log('login error:'+err.message)
