@@ -15,7 +15,7 @@ class IndexAction
 
         // 未納品のイベントの数を数える
         $count = ClientEvent::query()
-                    ->where('delivered', true)
+                    ->where('delivered', false)
                     ->count();
 
         // 未納品がなければ、スクショは不要
