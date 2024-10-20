@@ -5,6 +5,9 @@
         "dev": "vite",
         "build": "vite build"
     },
+    "resolutions": {
+        "rollup": "npm:@rollup/wasm-node"
+      },
     "devDependencies": {
         "@mdi/font": "^7.4.47",
         "@vitejs/plugin-vue": "^5.1.4",
