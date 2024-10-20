@@ -59,8 +59,8 @@ const login = () => {
     <v-card>
         <v-card-title>ログイン</v-card-title>
         <v-card-text>
-            <div class="text-subtitle-1 text-medium-emphasis">E-Mail</div>
             <v-text-field
+                lavel="E-Mail"
                 density="compact"
                 placeholder="Emailアドレスを入力してください"
                 prepend-inner-icon="mdi-email-outline"
@@ -73,7 +73,7 @@ const login = () => {
 				パスワード
             </div>
             <v-text-field
-                :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                label="パスワード"
                 :type="visible ? 'text' : 'password'"
 				density="compact"
                 placeholder="パスワードを入力してください"
@@ -84,14 +84,14 @@ const login = () => {
 				@click:append-inner="visible = !visible">
             </v-text-field>
         </v-card-text>
-        <v-card-action>
-            <v-btn block class="mb-2" color="blue" size="large" variant="tonal" @click="login">
+        <v-card-actions class="justify-space-between">
+            <v-btn @click="login">
 				ログイン
 			</v-btn>
-            <v-btn block class="mb-8" color="blue" size="large" variant="tonal" to="/regist">
+            <v-btn to="/regist">
 				新規登録
 			</v-btn>
-        </v-card-action>
+        </v-card-actions>
     </v-card>
 </v-dialog>
 </template>

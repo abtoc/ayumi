@@ -1,4 +1,4 @@
-<script setup>
+ <script setup>
 import { ref, onMounted } from 'vue';
 import { useLoginState } from '../stores/LoginState';
 import axios from '../axios';

@@ -16,8 +16,12 @@ const props = defineProps({
             </v-app-bar-title>
         </v-app-bar>
 
-        <v-main>
+        <v-main style="--v-layout-top: 72px;">
             <slot></slot>
         </v-main>
+
+        <v-bottom-navigation>
+            <slot name="bottom-navigation"></slot>
+        </v-bottom-navigation>
     </div>
 </template>

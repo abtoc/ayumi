@@ -22,7 +22,7 @@ const drawer = ref(false)
             <slot name="navigation"></slot>
         </v-navigation-drawer>
 
-        <v-main>
+        <v-main style="--v-layout-top: 72px;">
             <slot></slot>
         </v-main>
     </div>

@@ -3,10 +3,9 @@
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\RegisterController;
-use App\Http\Controllers\Api\ShortcutController;
+use App\Http\Controllers\Api\ScreenshotController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\VisitController;
-use App\Models\Screenshot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +19,10 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('api.logout');
 Route::post('/register', [RegisterController::class, 'register'])->name('api.register');
 Route::middleware('auth:sanctum')->group(function (){
     Route::get('/visit', [VisitController::class, 'visit'])->name('api.visit');
-    Route::get('/screenshot', [ShortcutController::class,'index'])->name('api.screenshort.index');
+    Route::get('/screenshot', [ScreenshotController::class,'index'])->name('api.screenshort.index');
+    Route::get('/screenshot/show', [ScreenshotController::class, 'show'])->name('api.screenshot.show');
+    Route::post('/screenshot/upload', [ScreenshotController::class, 'upload'])->name('api.screenshot.upload');
+    Route::delete('/screenshot/{screenshot}', [ScreenshotController::class, 'delete'])->name('api.screenshot.delete');
     Route::get('/loggedin', [LoginController::class, 'loggedin'])->name('api.loggedin');
     Route::get('/users', [UsersController::class, 'index'])->name('api.users');
 });

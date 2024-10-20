@@ -7,17 +7,22 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: () => import('../pages/HomeView.vue')
+            component: () => import('../pages/HomeView.vue'),
         },
         {
             path: '/regist',
             name: 'regist',
-            component: () => import('../pages/RegistView.vue')
+            component: () => import('../pages/RegistView.vue'),
+        },
+        {
+            path: '/screenshot',
+            name: 'screenshot',
+            component: () => import('../pages/ScreenshotView.vue'),
         },
         {
             path: '/test',
             name: 'test',
-            component: () => import('../pages/TestView.vue')
+            component: () => import('../pages/TestView.vue'),
         },
     ]
 })

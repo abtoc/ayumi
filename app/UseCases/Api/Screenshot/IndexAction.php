@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\Api\Shortcut;
+namespace App\UseCases\Api\Screenshot;
 
 use App\Models\ClientEvent;
 use App\Models\ClientEventDate;
@@ -28,6 +28,7 @@ class IndexAction
 
 
         $dates = ClientEventDate::query()
+                    ->select(['client_event_dates.id', 'client_event_dates.date', 'client_event_dates.client_event_id'])
                     ->join('client_events', 'client_event_dates.client_event_id', '=', 'client_events.id')
                     ->where('delivered', false)
                     ->where('collected', false)
@@ -42,7 +43,8 @@ class IndexAction
                     $result[$date->date->format('Y-m-d')] = [];
                 }
                 $event = [
-                    'name' => $date->client_event->event_name.'('.$date->client_event->liver_name.')',
+                    'date' => $date->date->format('Y-m-d'),
+                    'name' => $date->client_event->name,
                     'url' => $date->client_event->url,
                 ];
                 $result[$date->date->format('Y-m-d')][] = $event;

@@ -3,7 +3,6 @@
 namespace App\Rules;
 
 use App\Models\ClientEvent;
-use App\Models\Shortcut;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 

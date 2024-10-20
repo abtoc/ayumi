@@ -67,8 +67,8 @@ const regist = () => {
     <v-card>
         <v-card-title>ユーザ登録</v-card-title>
         <v-card-text>
-            <div class="text-subtitle-1 text-medium-emphasis">E-Mail</div>
             <v-text-field
+                label="E-Mail"
                 density="compact"
                 placeholder="Emailアドレスを入力してください"
                 prepend-inner-icon="mdi-email-outline"
@@ -77,8 +77,8 @@ const regist = () => {
                 v-model="email"
                 :error-messages="errs_email">
             </v-text-field>
-            <div class="text-subtitle-1 text-medium-emphasis">名前</div>
             <v-text-field
+                label="名前"
                 density="compact"
                 placeholder="ミクチャ名を入れてください"
                 prepend-inner-icon="mdi-account-outline"
@@ -86,10 +86,8 @@ const regist = () => {
                 v-model="name"
                 :error-messages="errs_name">
             </v-text-field>
-            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-				パスワード
-            </div>
             <v-text-field
+                label="パスワード"
                 :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="visible ? 'text' : 'password'"
 				density="compact"
@@ -100,10 +98,8 @@ const regist = () => {
                 :error-messages="errs_password"
 				@click:append-inner="visible = !visible">
             </v-text-field>
-            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-				パスワード確認用
-            </div>
             <v-text-field
+                label="パスワード確認用"
                 :append-inner-icon="visible2 ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="visible2 ? 'text' : 'password'"
 				density="compact"
@@ -114,11 +110,11 @@ const regist = () => {
 				@click:append-inner="visible2 = !visible2">
             </v-text-field>
         </v-card-text>
-        <v-card-action>
-            <v-btn block class="mb-2" color="blue" size="large" variant="tonal" @click="regist">
+        <v-card-actions>
+            <v-btn @click="regist">
 				登録
 			</v-btn>
-        </v-card-action>
+        </v-card-actions>
     </v-card>
 </SubLayout>
 </template>

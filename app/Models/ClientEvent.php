@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,14 @@ class ClientEvent extends Model
     public function client_event_dates(): HasMany
     {
         return $this->hasMany(ClientEventDate::class);
+    }
+
+    // accessor
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attribute) => $attribute['event_name'].'('.$attribute['liver_name'].')',
+        );
     }
 
     // Event
