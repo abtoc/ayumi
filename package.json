@@ -5,6 +5,9 @@
         "dev": "vite",
         "build": "vite build"
     },
+    "resolutions": {
+        "rollup": "npm:@rollup/wasm-node@*"
+    },
     "devDependencies": {
         "@mdi/font": "^7.4.47",
         "@vitejs/plugin-vue": "^5.1.4",
@@ -19,5 +22,10 @@
     },
     "dependencies": {
         "@onesignal/onesignal-vue3": "^2.0.1"
+    },
+    "overrides": {
+        "vite": {
+            "rollup": "npm:@rollup/wasm-node"
+        }
     }
 }
