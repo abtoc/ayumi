@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useLoginState } from '../stores/LoginState';
+import { useNavigationState } from '../stores/NavigationState';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -8,6 +9,11 @@ const router = createRouter({
             path: '/',
             name: 'home',
             component: () => import('../pages/HomeView.vue'),
+        },
+        {
+            path: '/livers',
+            name: 'livers',
+            component: () => import('../pages/LiverView.vue'),
         },
         {
             path: '/regist',
@@ -29,6 +35,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const st = useLoginState()
+    const nav = useNavigationState();
     if(['regist'].includes(to.name)){
         console.log('begin register')
         st.registStart()
@@ -36,6 +43,9 @@ router.beforeEach((to, from, next) => {
     if(['regist'].includes(from.name)){
         console.log('begin register')
         st.registEnd()
+    }
+    if(to.name !== from.name){
+        nav.close()
     }
     next()
 })

@@ -18,6 +18,8 @@ import { createPinia } from 'pinia';
 // Router
 import router from './router';
 
+// OneSignal
+import OneSignalVuePlugin from '@onesignal/onesignal-vue3';
 
 const vuetify = createVuetify({
     components,
@@ -31,4 +33,11 @@ createApp(App)
     .use(createPinia())
     .use(router)
     .use(vuetify)
+    .use(OneSignalVuePlugin, {
+        appId: 'f2758b34-e545-462b-bb9d-18b9fb8eecb6',
+        safari_web_id: 'web.onesignal.auto.2b9eaa60-5747-4249-a27c-f48aa9ddca65',
+        notifyButton: {
+            enable: true,
+        },
+    })
     .mount('#app')

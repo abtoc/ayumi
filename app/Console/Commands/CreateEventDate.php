@@ -12,7 +12,7 @@ class CreateEventDate extends Command
      *
      * @var string
      */
-    protected $signature = 'make:ayumi-create-event-date';
+    protected $signature = 'ayumi:create-event-date';
 
     /**
      * The console command description.

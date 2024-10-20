@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\LiverController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\RegisterController;
@@ -19,6 +20,7 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('api.logout');
 Route::post('/register', [RegisterController::class, 'register'])->name('api.register');
 Route::middleware('auth:sanctum')->group(function (){
     Route::get('/visit', [VisitController::class, 'visit'])->name('api.visit');
+    Route::get('/livers', [LiverController::class, 'index'])->name('api.livers');
     Route::get('/screenshot', [ScreenshotController::class,'index'])->name('api.screenshort.index');
     Route::get('/screenshot/show', [ScreenshotController::class, 'show'])->name('api.screenshot.show');
     Route::post('/screenshot/upload', [ScreenshotController::class, 'upload'])->name('api.screenshot.upload');

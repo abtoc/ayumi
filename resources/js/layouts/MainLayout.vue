@@ -1,5 +1,8 @@
 <script setup>
 import { defineProps, ref } from 'vue';
+import { useNavigationState } from '../stores/NavigationState';
+
+const nav = useNavigationState()
 
 const props = defineProps({
     title: String,
@@ -12,13 +15,13 @@ const drawer = ref(false)
 <template>
     <div>
         <v-app-bar color="primary">
-            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click="nav.toggle()"></v-app-bar-nav-icon>
             <v-app-bar-title>
                 {{ title }}
             </v-app-bar-title>
         </v-app-bar>
 
-        <v-navigation-drawer permanennt v-model="drawer">
+        <v-navigation-drawer permanennt v-model="nav.drawer">
             <slot name="navigation"></slot>
         </v-navigation-drawer>
 
