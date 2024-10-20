@@ -15,7 +15,7 @@ class IndexAction
 
         // 未納品のイベントの数を数える
         $count = ClientEvent::query()
-                    ->where('delivered', true)
+                    ->where('delivered', false)
                     ->count();
 
         // 未納品がなければ、スクショは不要
@@ -35,20 +35,19 @@ class IndexAction
                     ->orderBy('date', 'asc')
                     ->get();
         foreach ($dates as $date) {
+            if(!array_key_exists($date->date->format('Y-m-d'), $result)){
+                $result[$date->date->format('Y-m-d')] = [];
+            }
             $count = $date->screenshots()
                         ->where('user_id', Auth::id())
                         ->count();
-            if ($count == 0){
-                if(!array_key_exists($date->date->format('Y-m-d'), $result)){
-                    $result[$date->date->format('Y-m-d')] = [];
-                }
-                $event = [
-                    'date' => $date->date->format('Y-m-d'),
-                    'name' => $date->client_event->name,
-                    'url' => $date->client_event->url,
-                ];
-                $result[$date->date->format('Y-m-d')][] = $event;
-            }
+            $event = [
+                'date' => $date->date->format('Y-m-d'),
+                'name' => $date->client_event->name,
+                'url' => $date->client_event->url,
+                'icon' => $count > 0 ? "mdi-check-bold" : "mdi-minus",
+            ];
+            $result[$date->date->format('Y-m-d')][] = $event;
         }
 
         return [
