@@ -167,11 +167,23 @@ onMounted(() => {
                     v-for="(screenshot, i) in screenshots"
                     :key="`widow-${i}`"
                 >
-                    <v-img
-                        max-height="600"
-                        :src="screenshot.url"
-                    >
-                    </v-img>
+                    <div class="d-flex flex-row justify-center align-center">
+                        <v-btn
+                            icon="mdi-chevron-left"
+                            @click="prev"
+                        >
+                        </v-btn>
+                        <v-img
+                                max-height="600"
+                            :src="screenshot.url"
+                        >
+                        </v-img>
+                        <v-btn
+                            icon="mdi-chevron-right"
+                            @click="next"
+                        >
+                        </v-btn>
+                    </div>
                     <div class="d-flex flex-row justify-center">
                         <div class="v-card-title">{{ screenshot.name }}</div>
                     </div>
@@ -184,16 +196,6 @@ onMounted(() => {
             </div>
         </v-card-text>
         <v-card-actions class="justify-space-between">
-            <v-btn
-                icon="mdi-chevron-left"
-                @click="prev"
-            >
-            </v-btn>
-            <v-btn
-                icon="mdi-chevron-right"
-                @click="next"
-            >
-            </v-btn>
         </v-card-actions>
     </v-card>
     <template v-slot:bottom-navigation>
@@ -230,7 +232,7 @@ onMounted(() => {
                 >
                 </v-file-input>
                 <v-img
-                    max-height="600"
+                    max-height="540"
                     :src="url"
                     v-if="preview">
                 </v-img>
