@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ClientResource\Pages;
 use App\Filament\Resources\ClientResource\RelationManagers;
 use App\Models\Client;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class ClientResource extends Resource
 {
@@ -25,11 +27,15 @@ class ClientResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('user_id')
+                    ->label('担当')
+                    ->required()
+                    ->options(User::all()->pluck('name', 'id'))
+                    ->searchable(),
                 Forms\Components\TextInput::make('name')
                     ->label('名前')
                     ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
+                    ->maxLength(255),
                 Forms\Components\Select::make('contact')
                     ->label('連絡手段')
                     ->required()
@@ -52,6 +58,9 @@ class ClientResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->label('ID')
                      ->sortable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('担当')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->label('名前')
                     ->searchable()
@@ -74,7 +83,10 @@ class ClientResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('is_own')
+                    ->label('自分の分のみ')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->where('user_id', Auth::id())),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

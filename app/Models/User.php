@@ -51,6 +51,10 @@ class User extends Authenticatable implements FilamentUser
     }
 
     // Relation
+    public function clients(): HasMany
+    {
+        return $this->hasMany(Client::class);
+    }
     public function screenshots(): HasMany
     {
         return $this->hasMany(Screenshot::class);
