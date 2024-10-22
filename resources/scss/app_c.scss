@@ -1,0 +1,14 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~viewerjs/dist/viewer.min.css";
+
+body {
+    padding-top: 70px;
+}
+
+img.screenshot {
+    width: 180px;
+}
+
+ul#screenshots {
+    list-style-type: none;
+}
