@@ -7,9 +7,9 @@
                         <a href="{{ route('client', ['client' => $date->client_event->client])}}">ホーム</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route('event', ['client_event' => $date->client_event])}}">イベント</a>
+                        <a href="{{ route('event', ['client_event' => $date->client_event])}}">{{ $date->client_event->name }}</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current='page'>スクショ一覧</li>
+                    <li class="breadcrumb-item active" aria-current='page'>{{ $date->date->format('Y/m/d')}}</li>
                 </ol>
             </nav>
             <ul class="list-group d-flex flex-row justify-content-around" id="screenshots">

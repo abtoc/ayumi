@@ -1,3 +1,5 @@
+$breadcrumb-divider: quote(">");
+
 @import "~bootstrap/scss/bootstrap";
 @import "~viewerjs/dist/viewer.min.css";
 
@@ -11,4 +13,8 @@ img.screenshot {
 
 ul#screenshots {
     list-style-type: none;
+}
+
+.breadcrumb-item a {
+    font-size: smaller;
 }

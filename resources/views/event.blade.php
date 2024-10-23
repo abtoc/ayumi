@@ -6,7 +6,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{ route('client', ['client' => $event->client])}}">ホーム</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current='page'>イベント</li>
+                    <li class="breadcrumb-item active" aria-current='page'>{{ $event->name }}</li>
                 </ol>
             </nav>
             <div class="list-group">

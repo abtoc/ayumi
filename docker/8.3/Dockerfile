@@ -16,6 +16,11 @@ ENV SUPERVISOR_PHP_USER="sail"
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+RUN apt-get update && apt-get install -y language-pack-ja && \
+    update-locale LANG=ja_JP.UTF-8
+
+ENV LANG=ja_JP.UTF-8
+
 RUN apt-get update \
     && apt-get install -y cron \
     && mkdir -p /etc/apt/keyrings \
