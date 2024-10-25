@@ -59,7 +59,7 @@ class ClientEventResource extends Resource
                     ->required()
                     ->date()
                     ->afterOrEqual('start_on'),
-                Forms\Components\Checkbox::make('locked')
+                Forms\Components\Checkbox::make('deliverd')
                     ->label('納品済'),
             ]);
     }

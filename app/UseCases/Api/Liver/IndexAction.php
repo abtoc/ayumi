@@ -11,6 +11,7 @@ class IndexAction
         $result = [];
 
         $livers = Liver::query()
+                    ->where('updated_at', '>=', now()->subDay(180))
                     ->orderBy('name', 'asc')
                     ->get();
         foreach ($livers as $liver) {

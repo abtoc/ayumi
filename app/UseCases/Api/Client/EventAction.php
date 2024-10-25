@@ -14,6 +14,8 @@ class EventAction
             'name' => $event->name,
             'delivered' => $event->delivered,
             'url' => route('event', ['client_event', $event]),
+            'start_on' => $event->start_on->format('m/d'),
+            'end_on' => $event->end_on->format('m/d'),
             'dates' => [],
         ];
 
@@ -30,7 +32,7 @@ class EventAction
                 'id' => $date->id,
                 'date' => $date->date->format('Y/m/d'),
                 'collected' => $date->collected,
-                'no_submitted' => $no_submitted->count() > 0 && $date->collected === false ? $no_submitted->get()->pluck('name')->join(',') : null,
+                'no_submitted' => $no_submitted->get()->pluck('name')->join(','),
                 'url' => route('date', ['client_event_date' => $date]),
             ];
         }

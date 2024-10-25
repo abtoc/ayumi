@@ -21,6 +21,10 @@ import router from './router';
 // OneSignal
 import OneSignalVuePlugin from '@onesignal/onesignal-vue3';
 
+// Clipboard
+import { VueClipboard } from '@lxf2513/vue3-clipboard';
+
+
 const vuetify = createVuetify({
     components,
     directives,
@@ -40,4 +44,5 @@ createApp(App)
             enable: true,
         },
     })
+    .use(VueClipboard)
     .mount('#app')

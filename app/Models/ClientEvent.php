@@ -54,6 +54,14 @@ class ClientEvent extends Model
             if($event->start_on->eq(today())){
                 $event->client_event_dates()->create(['date' => $event->start_on]);
             }
+            $client = $event->client;
+            $client->updated_at = $event->updated_at;
+            $client->save();
+        });
+        static::updated(function ($event){
+            $client = $event->client;
+            $client->updated_at = $event->updated_at;
+            $client->save();
         });
         static::deleting(function ($event){
             $event->client_event_dates()->delete();

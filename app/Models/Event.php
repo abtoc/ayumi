@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Fico7489\Laravel\Pivot\Traits\PivotEventTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
-    use HasFactory;
+    use HasFactory, PivotEventTrait;
 
     // guarded
     protected $guarded = [
@@ -79,6 +80,13 @@ class Event extends Model
                 $event_type = EventType::where('name', '最終日')->firstOrFail();
                 EventDate::where('event_id', $event->id)->where('event_type_id', $event_type->id)
                     ->update(['date' => $event->end_on, 'updated_at' => now()]);
+            }
+        });
+        static::pivotAttached(function($event, $relationName, $pivotIds, $pivotIdsAttributes){
+            foreach($pivotIds as $pivotId){
+                $liver = Liver::findOrFail($pivotId);
+                $liver->updated_at = now();
+                $liver->save();
             }
         });
     }

@@ -26,6 +26,16 @@ const router = createRouter({
             component: () => import('../pages/ScreenshotView.vue'),
         },
         {
+            path: '/clients',
+            name: 'clients',
+            component: () => import('../pages/ClientView.vue'),
+        },
+        {
+            path: '/events/:id',
+            name: 'events',
+            component: () => import('../pages/EventView.vue'),
+        },
+        {
             path: '/test',
             name: 'test',
             component: () => import('../pages/TestView.vue'),
