@@ -41,13 +41,10 @@ onMounted(async () => {
 })
 
 const click = (id, ev) => {
-    console.log(id)
-    console.log(ev)
     axios.get('/sanctum/csrf-cookie')
         .then((res) => {
             axios.put('/api/toggle/'+id, {
             }).then((res) => {
-                console.log(res)
                 ev.srcElement.checked = res.data.detail.value
             }).catch((err) => {
                 console.log(err)
