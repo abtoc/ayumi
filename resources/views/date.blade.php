@@ -1,4 +1,4 @@
-<x-layout :name="$date->client_event->client->name">
+<x-layout :id="$date->client_event->client->id" :name="$date->client_event->client->name">
     <x-slot name="content">
         <div class="container">
             <nav aria-label="breadcrumb">
