@@ -30,5 +30,4 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('/events/{client_event}', [ClientControler::class, 'event'])->name('api.clients.events');
     Route::put('/toggle/{id}', [ClientControler::class,'toggle'])->name('api.clients.toggle');
     Route::get('/loggedin', [LoginController::class, 'loggedin'])->name('api.loggedin');
-    Route::get('/users', [UsersController::class, 'index'])->name('api.users');
 });
