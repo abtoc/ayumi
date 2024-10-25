@@ -32,7 +32,7 @@ async function load({done}) {
 <template>
 <MainLayout title="Ayumi System">
     <template v-slot:navigation>
-        <v-list-item to='/' title="ホーム"></v-list-item>
+        <v-list-item to='/' title="ホーム" active="true"></v-list-item>
         <v-list-item to='/regist' title="新規登録" v-if="!st.loggedin"></v-list-item>
         <v-list-item to='/livers' title="登録ライバー"></v-list-item>
         <v-list-item to='/clients' title="相互スクショ管理"></v-list-item>
