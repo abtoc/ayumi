@@ -12,20 +12,18 @@
                     <li class="breadcrumb-item active" aria-current='page'>{{ $date->date->format('Y/m/d')}}</li>
                 </ol>
             </nav>
-            <ul class="list-group d-flex flex-row justify-content-around" id="screenshots">
+            <div class="row">
                 @forelse($date->screenshots as $screenshot)
-                    <li class="d-inline">
+                    <div class="col mb-3">
                         <img src="{{ $screenshot->url }}" alt="{{ $screenshot->id }}" class="screenshot">
                         @auth
-                            <div class="text-center fs-6">
-                                {{ $screenshot->user->name }}
-                            </div>
+                            <div>{{ $screenshot->user->name }}</div>
                         @endauth
-                    </li>
+                    </div>
                 @empty
                     提供できるスクショが存在しません
                 @endforelse
-            </ul>
+            </div>
         </div>
     </x-slot>
 </x-layout>
