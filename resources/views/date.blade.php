@@ -14,8 +14,8 @@
             </nav>
             <div class="row">
                 @forelse($date->screenshots as $screenshot)
-                    <div class="col mb-3">
-                        <img src="{{ $screenshot->url }}" alt="{{ $screenshot->id }}" class="screenshot">
+                    <div class="col-6 col-lg-3 mb-3">
+                        <img src="{{ $screenshot->url }}" alt="{{ $screenshot->id }}" class="img-fluid">
                         @auth
                             <div>{{ $screenshot->user->name }}</div>
                         @endauth
