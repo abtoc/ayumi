@@ -41,6 +41,7 @@ onMounted(async () => {
                         :href="event.url"
                         target="_blank"
                     >
+                        <!--
                             <v-list
                                 density="compact"
                             >
@@ -52,6 +53,7 @@ onMounted(async () => {
                                 >
                                 </v-list-item>
                             </v-list>
+                        -->
                     </v-list-item>
                 </v-list>
             </div>
