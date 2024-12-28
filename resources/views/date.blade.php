@@ -15,7 +15,11 @@
             <div class="row">
                 @forelse($date->screenshots as $screenshot)
                     <div class="col-6 col-lg-3 mb-3">
-                        <img src="{{ $screenshot->url }}" alt="{{ $screenshot->id }}" class="img-fluid">
+                        @if(pathinfo($screenshot->url, PATHINFO_EXTENSION) == 'mp4')
+                            <video src="{{ $screenshot->url }}" class="img-fluid" controls></video>
+                        @else
+                            <img src="{{ $screenshot->url }}" alt="{{ $screenshot->id }}" class="img-fluid">
+                        @endif
                         @auth
                             <div>{{ $screenshot->user->name }}</div>
                         @endauth

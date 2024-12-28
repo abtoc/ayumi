@@ -151,6 +151,11 @@ onMounted(() => {
     load()
 })
 
+const is_video = (url) => {
+    const ext = url.split('.').pop()
+    return ext == 'mp4'
+}
+
 </script>
 
 <template>
@@ -173,8 +178,13 @@ onMounted(() => {
                             @click="prev"
                         >
                         </v-btn>
+                        <video
+                            v-if="is_video(screenshot.url)"
+                            :src="screenshot.url" controls>
+                        </video>
                         <v-img
-                                max-height="600"
+                            v-else
+                            max-height="600"
                             :src="screenshot.url"
                         >
                         </v-img>
@@ -224,7 +234,7 @@ onMounted(() => {
                     variant="outlined"
                     show-size
                     prepend-icon="mdi-camera"
-                    accept="image/*"
+                    accept="image/*, video/*"
                     chips="true"
                     :error-messages="errs_file"
                     @change="change"
@@ -262,3 +272,9 @@ onMounted(() => {
 
 </SubLayout>
 </template>
+
+<style scoped>
+video {
+    max-height: 540px;
+}
+</style>

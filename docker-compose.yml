@@ -12,6 +12,7 @@ services:
             - SSL_ALT_NAME=${SSL_ALT_NAME:-DNS:localhost}
         volumes:
             #- 'sail-nginx:/etc/nginx/certs'
+            - './docker/8.3/default.conf:/etc/nginx/conf.d/default.conf'
             - './certs:/etc/nginx/certs'
             - './vendor/ryoluo/sail-ssl/nginx/templates:/etc/nginx/templates'
             - './vendor/ryoluo/sail-ssl/nginx/generate-ssl-cert.sh:/docker-entrypoint.d/99-generate-ssl-cert.sh'

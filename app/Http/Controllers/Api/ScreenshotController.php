@@ -39,7 +39,7 @@ class ScreenshotController extends BaseController
     {
         $input = $request->validate([
             'id' => ['required', 'exists:client_event_dates,id'],
-            'file' => ['required', 'file',' mimes:jpeg,jpg,png'],
+            'file' => ['required', 'file',' mimes:jpeg,jpg,png,mp4'],
         ]);
 
         $result = $action($input);

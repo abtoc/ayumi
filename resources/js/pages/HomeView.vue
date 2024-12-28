@@ -36,6 +36,7 @@ async function load({done}) {
         <v-list-item to='/regist' title="新規登録" v-if="!st.loggedin"></v-list-item>
         <v-list-item to='/livers' title="登録ライバー"></v-list-item>
         <v-list-item to='/clients' title="相互スクショ管理"></v-list-item>
+        <v-divider></v-divider>
         <LogoutComponent></LogoutComponent>
     </template>
     <v-pull-to-refresh
