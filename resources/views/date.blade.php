@@ -20,9 +20,7 @@
                         @else
                             <img src="{{ $screenshot->url }}" alt="{{ $screenshot->id }}" class="img-fluid">
                         @endif
-                        @auth
-                            <div>{{ $screenshot->user->name }}</div>
-                        @endauth
+                        <div>{{ $screenshot->user->name }}</div>
                     </div>
                 @empty
                     提供できるスクショが存在しません
